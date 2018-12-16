@@ -16,6 +16,11 @@
         {
             $uri = $this->getURI();
 //            echo "uri = $uri<br>";
+            // Заполняем массив $_GET
+            parse_str(
+                substr($uri, strpos('?') + 1),
+                $_GET
+            );
 
             // Проверим наличие такого запроса в routes.php
             foreach ($this->routes as $pattern => $route){

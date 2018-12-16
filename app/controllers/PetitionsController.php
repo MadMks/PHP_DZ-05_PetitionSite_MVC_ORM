@@ -67,17 +67,21 @@ require ROOT . '/app/models/Petitions.php';
 
             // Добавление петиции.
             if (!empty($_POST)){
-                Petitions::addPetition();
-            }
-            else{
-                // Сообщение о выполнении.
-                if (!empty($_SESSION['message'])) {
-                    $message = new View('message');
-                    $message->assign('status', $_SESSION['message']);
-                    $home->import('messageStatus', $message);
-                    unset($_SESSION['message']);
+                if (Petitions::addPetition()) {
+                    header('Location: /petitions/add?message=added');
+                } else {
+                    header('Location: /petitions/add?message=error');
                 }
             }
+            // else{
+            //     // Сообщение о выполнении.
+            //     if (!empty($_SESSION['message'])) {
+            //         $message = new View('message');
+            //         $message->assign('status', $_SESSION['message']);
+            //         $home->import('messageStatus', $message);
+            //         unset($_SESSION['message']);
+            //     }
+            // }
 
             // Выводим на экран.
             $layout->display();

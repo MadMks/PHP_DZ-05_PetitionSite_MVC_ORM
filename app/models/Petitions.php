@@ -112,14 +112,17 @@ class Petitions
                 if ($result) {
                     sendMail($userEmail['email'], $petition['id'], $token);
                 }
-                $_SESSION['message'] = 'addSuccess';
+                // $_SESSION['message'] = 'addSuccess';
 
-                echo "<script>";
-                echo "window.location=document.URL;";
-                echo "</script>";
+                // echo "<script>";
+                // echo "window.location=document.URL;";
+                // echo "</script>";
+                return true;
             }
 
         }
+
+        return false;
     }
 
 
